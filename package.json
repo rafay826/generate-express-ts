@@ -1,6 +1,7 @@
 {
   "name": "generate-express-ts",
-  "version": "1.0.0",
+  "keywords": ["generate", "express", "typescript", "ts", "gen", "husky", "jest"],
+  "version": "1.0.1",
   "description": "Thin setup script for Express TypeScript applications. Comes with eslint enforced via husky using pre-commit hooks. Testing setup with jest.",
   "main": "dist/setup.js",
   "bin": {
