@@ -17,7 +17,7 @@ This script sets up a new Express application with TypeScript. It's designed to 
 
 Before running this script, make sure you have the following installed:
 
-- Node.js (v12 or higher)
+- Node.js (v16 or higher)
 - npm or Yarn
 - Git
 
