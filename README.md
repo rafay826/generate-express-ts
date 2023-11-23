@@ -1,4 +1,4 @@
-[![Node.js CI](https://github.com/rafay826/create-express-ts-app/actions/workflows/run_tests.yml/badge.svg)](https://github.com/rafay826/create-express-ts-app/actions/workflows/run_tests.yml)
+[//]: # ([![Node.js CI]&#40;https://github.com/rafay826/create-express-ts-app/actions/workflows/run_tests.yml/badge.svg&#41;]&#40;https://github.com/rafay826/create-express-ts-app/actions/workflows/run_tests.yml&#41;)
 
 # Express TypeScript App Setup
 
