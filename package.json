@@ -1,10 +1,10 @@
 {
-  "name": "codara-express-ts",
-  "version": "1.0.6",
+  "name": "generate-express-ts",
+  "version": "1.0.0",
   "description": "Thin setup script for Express TypeScript applications. Comes with eslint enforced via husky using pre-commit hooks. Testing setup with jest.",
   "main": "dist/setup.js",
   "bin": {
-    "codara-express-ts": "dist/setup.js"
+    "generate-express-ts": "dist/setup.js"
   },
   "scripts": {
     "build": "tsc && ts-node prepend-shebang.ts",
