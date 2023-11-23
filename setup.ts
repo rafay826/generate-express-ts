@@ -1,5 +1,6 @@
 import { execSync } from 'child_process';
-import { writeFileSync, existsSync, mkdirSync } from 'fs';
+import { writeFileSync, existsSync, mkdirSync, readFileSync } from 'fs';
+import * as path from 'path';
 import * as shell from 'shelljs';
 
 // Helper functions
@@ -7,16 +8,19 @@ const exec = (command: string) => {
   execSync(command, { stdio: 'inherit' });
 };
 
-const write = (path: string, data: string) => {
-  writeFileSync(path, data, 'utf8');
+const write = (filePath: string, data: string) => {
+  writeFileSync(filePath, data, 'utf8');
 };
 
 // Main setup function
 const setup = (projectName: string) => {
-  if (!existsSync(projectName)) {
-    mkdirSync(projectName);
+  const projectPath = path.join(process.cwd(), projectName);
+
+  if (!existsSync(projectPath)) {
+    mkdirSync(projectPath);
   }
-  shell.cd(projectName);
+
+  shell.cd(projectPath);
   exec('git init');
   exec('yarn init -y');
   exec('yarn add express');
@@ -25,7 +29,7 @@ const setup = (projectName: string) => {
   exec('yarn add -D ts-jest @types/jest supertest @types/supertest eslint-plugin-unused-imports@latest');
   exec('npx tsc --init');
 
-  write('tsconfig.json', `{
+  write(path.join(projectPath, 'tsconfig.json'), `{
     "compilerOptions": {
       "target": "es6",
       "module": "commonjs",
@@ -38,23 +42,23 @@ const setup = (projectName: string) => {
     "exclude": ["node_modules"]
   }`);
 
-  write('app.ts', `import express from "express";
+  write(path.join(projectPath, 'app.ts'), `import express from "express";
 
   export const app = express();
   const port = 3000;
-  
+
   app.use(express.json());
-  
+
   app.get("/", (req, res) => {
     res.send("Hello, world!");
   });
-  
+
   app.listen(port, () => {
     console.log(\`Server is running at http://localhost:\${port}\`);
   });
   `);
 
-  write('.eslintrc.yml', `parser: '@typescript-eslint/parser'
+  write(path.join(projectPath, '.eslintrc.yml'), `parser: '@typescript-eslint/parser'
   root: true
   env:
     browser: true
@@ -67,17 +71,17 @@ const setup = (projectName: string) => {
     'no-use-before-define': 'off'
   `);
 
-  write('.gitignore', `node_modules
+  write(path.join(projectPath, '.gitignore'), `node_modules
   .idea
   dist
   `);
 
-  write('.prettierrc.yml', `printWidth: 120
+  write(path.join(projectPath, '.prettierrc.yml'), `printWidth: 120
   semi: false
   singleQuote: true
   `);
 
-  write('.lintstagedrc', `{
+  write(path.join(projectPath, '.lintstagedrc'), `{
     "**/*.{js,ts}": [
       "prettier --write",
       "eslint --fix"
@@ -87,9 +91,9 @@ const setup = (projectName: string) => {
     ]
   }`);
 
-  write('app.spec.ts', `import request from 'supertest';
+  write(path.join(projectPath, 'app.spec.ts'), `import request from 'supertest';
   import { app } from './app';
-  
+
   describe('GET /', () => {
     it('responds with Hello, world!', async () => {
       const response = await request(app).get('/');
@@ -104,8 +108,14 @@ const setup = (projectName: string) => {
 
   exec('npx ts-jest config:init');
 
-  const packageJsonPath = './package.json';
-  const packageJson = require(packageJsonPath);
+  let packageJson;
+  const packageJsonPath = path.join(projectPath, 'package.json');
+  if (existsSync(packageJsonPath)) {
+    packageJson = JSON.parse(readFileSync(packageJsonPath, 'utf8'));
+  } else {
+    packageJson = { scripts: {}, license: 'MIT' };
+  }
+
   packageJson.scripts = {
     ...packageJson.scripts,
     'start': 'ts-node app.ts',
@@ -114,7 +124,7 @@ const setup = (projectName: string) => {
     'test': 'jest',
     'prepare': 'husky install'
   };
-  packageJson.license = 'MIT';
+
   write(packageJsonPath, JSON.stringify(packageJson, null, 2));
 
   exec('yarn prepare');
@@ -122,6 +132,8 @@ const setup = (projectName: string) => {
   console.log("Express TypeScript project setup complete.");
 };
 
-// Parse command line arguments
-const projectName = process.argv[2] || 'my-express-ts-app';
-setup(projectName);
+// This should be the entry point when the script is run
+if (require.main === module) {
+  const projectName = process.argv[2] || 'my-express-ts-app';
+  setup(projectName);
+}
