@@ -1,13 +1,13 @@
 {
-  "name": "create-express-ts-app",
-  "version": "1.0.0",
+  "name": "codara-express-ts",
+  "version": "1.0.3",
   "description": "Thin setup script for Express TypeScript applications. Comes with eslint enforced via husky using pre-commit hooks. Testing setup with jest.",
   "main": "dist/setup.js",
   "bin": {
-    "create-express-ts-app": "./dist/setup.js"
+    "codara-express-ts": "dist/setup.js"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && ts-node prepend-shebang.ts",
     "prepublishOnly": "npm run build"
   },
   "author": "Rafay Choudhury",
