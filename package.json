@@ -24,7 +24,7 @@
     "@types/shelljs": "^0.8.15"
   },
   "engines": {
-    "node": ">=12"
+    "node": ">=16"
   },
   "private": false,
   "publishConfig": {
