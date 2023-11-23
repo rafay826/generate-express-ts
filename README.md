@@ -51,8 +51,6 @@ The script will create a new directory with the given project name (or the defau
 
 The script will create the following files and directories:
 
-- `src/`: Source directory with a sample Express app
-- `dist/`: Build directory for the compiled JavaScript files
 - `.eslintrc.yml`: ESLint configuration file
 - `.prettierrc.yml`: Prettier configuration file
 - `.gitignore`: Basic `.gitignore` file for a Node.js project
@@ -68,7 +66,6 @@ The generated `package.json` includes the following scripts:
 
 - `start`: Runs the Express server using `ts-node`
 - `build`: Compiles TypeScript files to JavaScript in the `dist/` directory
-- `serve`: Runs the compiled Express server from the `dist/` directory
 - `test`: Runs tests using Jest
 
 ## License
@@ -81,4 +78,4 @@ Contributions are what make the open-source community such an amazing place to l
 
 ## Contact
 
-Rafay Choudhury - [rafay.io](https://rafay.io) - [@rafay_io](https://twitter.com/rafay_io)
+Rafay Choudhury - [x: @rafay_io](https://twitter.com/rafay_io) - [website: rafay.io](https://rafay.io)
