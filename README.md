@@ -1,4 +1,4 @@
-[//]: # ([![Node.js CI]&#40;https://github.com/rafay826/create-express-ts-app/actions/workflows/run_tests.yml/badge.svg&#41;]&#40;https://github.com/rafay826/create-express-ts-app/actions/workflows/run_tests.yml&#41;)
+[//]: # ([![Node.js CI]&#40;https://github.com/rafay826/codara-express-ts/actions/workflows/run_tests.yml/badge.svg&#41;]&#40;https://github.com/rafay826/codara-express-ts/actions/workflows/run_tests.yml&#41;)
 
 # Express TypeScript App Setup
 
@@ -26,13 +26,13 @@ Before running this script, make sure you have the following installed:
 Install the package globally using npm:
 
 ```bash
-npm install -g create-express-ts-app
+npm install -g codara-express-ts
 ```
 
 Or using Yarn:
 
 ```bash
-yarn global add create-express-ts-app
+yarn global add codara-express-ts
 ```
 
 ## Usage
@@ -40,7 +40,7 @@ yarn global add create-express-ts-app
 After installing the package globally, you can set up a new Express TypeScript application by running:
 
 ```bash
-create-express-ts-app <project-name>
+codara-express-ts <project-name>
 ```
 
 Replace `<project-name>` with your desired project directory name. If you don't specify a name, it defaults to `my-express-ts-app`.
