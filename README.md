@@ -1,8 +1,9 @@
 [//]: # ([![Node.js CI]&#40;https://github.com/rafay826/generate-express-ts/actions/workflows/run_tests.yml/badge.svg&#41;]&#40;https://github.com/rafay826/generate-express-ts/actions/workflows/run_tests.yml&#41;)
 
-# Express TypeScript App Setup
+# Generate Express TypeScript
 
-This script sets up a new Express application with TypeScript. It's designed to create a project structure, initialize version control, install dependencies, and configure TypeScript, ESLint, Prettier, and Jest for testing.
+This cli tool generates a thin, unopinionated Express application with TypeScript. It's designed to 
+create a project structure, initialize version control, install dependencies, and configure TypeScript, ESLint, Prettier, and Jest for testing.
 
 ## Features
 
@@ -18,8 +19,8 @@ This script sets up a new Express application with TypeScript. It's designed to 
 Before running this script, make sure you have the following installed:
 
 - Node.js (v16 or higher)
-- npm or Yarn
-- Git
+- yarn (default package manager)
+- git
 
 ## Installation
 
@@ -65,7 +66,7 @@ The script will create the following files and directories:
 The generated `package.json` includes the following scripts:
 
 - `start`: Runs the Express server using `ts-node`
-- `build`: Compiles TypeScript files to JavaScript in the `dist/` directory
+- `build`: Compiles TypeScript files to JavaScript in the `dist` directory
 - `test`: Runs tests using Jest
 
 ## License
