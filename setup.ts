@@ -21,6 +21,7 @@ const setup = (projectName: string) => {
   }
 
   shell.cd(projectPath)
+  shell.mkdir('src')
   exec('git init')
   exec('yarn init -y')
   exec('yarn add express')
@@ -33,16 +34,17 @@ const setup = (projectName: string) => {
     "compilerOptions": {
       "target": "es6",
       "module": "commonjs",
-      "rootDir": "./",
+      "rootDir": "./src",
       "outDir": "./dist",
       "esModuleInterop": true,
       "strict": true,
       "skipLibCheck": true
     },
-    "exclude": ["node_modules"]
+    "exclude": ["node_modules"],
+    "include": ["./src/**/*"]
   }`)
 
-  write(path.join(projectPath, 'app.ts'), `
+  write(path.join(projectPath, './src/app.ts'), `
 import express from "express";
 
 export const app = express();
@@ -54,9 +56,11 @@ app.get("/", (req, res) => {
   res.send("Hello, world!");
 });
 
-app.listen(port, () => {
-  console.log(\`Server is running at http://localhost:\${port}\`);
-});
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(port, () => {
+    console.log(\`Server is running at http://localhost:\${port}\`)
+  })
+}
   `)
 
   write(path.join(projectPath, '.eslintrc.yml'),
@@ -93,7 +97,7 @@ singleQuote: true
     ]
   }`)
 
-  write(path.join(projectPath, 'app.spec.ts'), `
+  write(path.join(projectPath, './src/app.spec.ts'), `
 import request from 'supertest';
 import { app } from './app';
 
@@ -121,10 +125,10 @@ describe('GET /', () => {
 
   packageJson.scripts = {
     ...packageJson.scripts,
-    'start': 'ts-node app.ts',
+    'start': 'ts-node ./src/app.ts',
     'build': 'tsc',
     'serve': 'node dist/app.js',
-    'test': 'jest',
+    'test': 'NODE_ENV=test jest',
     'prepare': 'husky install'
   }
 
