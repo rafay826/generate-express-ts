@@ -68,6 +68,7 @@ The generated `package.json` includes the following scripts:
 - `start`: Runs the Express server using `ts-node`
 - `build`: Compiles TypeScript files to JavaScript in the `dist` directory
 - `test`: Runs tests using Jest
+- `serve`: Runs the Express server using `node` (requires `build` to be run first)
 
 ## License
 
