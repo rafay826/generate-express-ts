@@ -1,4 +1,4 @@
-[//]: # ([![Node.js CI]&#40;https://github.com/rafay826/generate-express-ts/actions/workflows/run_tests.yml/badge.svg&#41;]&#40;https://github.com/rafay826/generate-express-ts/actions/workflows/run_tests.yml&#41;)
+[![CI/CD](https://github.com/rafay826/generate-express-ts/actions/workflows/run_tests.yml/badge.svg)](https://github.com/rafay826/generate-express-ts/actions/workflows/run_tests.yml)
 
 # Generate Express TypeScript
 
