@@ -1,4 +1,4 @@
-[![CI/CD](https://github.com/rafay826/generate-express-ts/actions/workflows/run_tests.yml/badge.svg)](https://github.com/rafay826/generate-express-ts/actions/workflows/run_tests.yml)
+[![tests](https://github.com/rafay826/generate-express-ts/actions/workflows/run_tests.yml/badge.svg)](https://github.com/rafay826/generate-express-ts/actions/workflows/run_tests.yml)
 
 # Generate Express TypeScript
 
