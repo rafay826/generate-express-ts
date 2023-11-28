@@ -5,24 +5,30 @@
 This cli tool generates a thin, unopinionated Express application with TypeScript. It's designed to 
 create a project structure, initialize version control, install dependencies, and configure TypeScript, ESLint, Prettier, and Jest for testing.
 
-## Features
+## 🍇 Features
 
-- Sets up an Express server with TypeScript
-- Configures ESLint with TypeScript support
-- Adds Prettier for code formatting
-- Sets up Jest and Supertest for endpoint testing
-- Initializes a new Git repository
-- Configures Husky for pre-commit hooks
+🍦 Sets up an Express server with TypeScript
 
-## Prerequisites
+🍦 Configures ESLint with TypeScript support
+
+🍦 Adds Prettier for code formatting
+
+🍦 Sets up Jest and Supertest for endpoint testing
+
+🍦 Initializes a new Git repository
+
+🍦 Configures Husky for pre-commit hooks
+
+
+## 🪵 Prerequisites
 
 Before running this script, make sure you have the following installed:
-
 - Node.js (v16 or higher)
 - yarn (default package manager)
 - git
 
-## Installation
+
+## 🏰 Installation
 
 Install the package globally using npm:
 
@@ -36,7 +42,7 @@ Or using Yarn:
 yarn global add generate-express-ts
 ```
 
-## Usage
+## 🚂 Usage
 
 After installing the package globally, you can set up a new Express TypeScript application by running:
 
@@ -48,7 +54,7 @@ Replace `<project-name>` with your desired project directory name. If you don't 
 
 The script will create a new directory with the given project name (or the default name) and set up the project structure and configurations within that directory.
 
-## What's Included
+## 🧳 What's Included
 
 The script will create the following files and directories:
 
@@ -61,7 +67,7 @@ The script will create the following files and directories:
 - `.lintstagedrc`: Configuration for lint-staged
 - `package.json`: Node.js package manifest with scripts for common tasks
 
-## Scripts
+## 🧸 Scripts
 
 The generated `package.json` includes the following scripts:
 
@@ -70,14 +76,14 @@ The generated `package.json` includes the following scripts:
 - `test`: Runs tests using Jest
 - `serve`: Runs the Express server using `node` (requires `build` to be run first)
 
-## License
+## 🎗️ License
 
 Distributed under the MIT License. See `LICENSE` for more information.
 
-## Contributing
+## 🪄 Contributing
 
 Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
-## Contact
+## 📱 Contact
 
 Rafay Choudhury - [x: @rafay_io](https://twitter.com/rafay_io) - [website: rafay.io](https://rafay.io)
