@@ -4,16 +4,16 @@ import * as path from 'path'
 import * as shell from 'shelljs'
 
 // Helper functions
-const exec = (command: string) => {
+export const exec = (command: string) => {
   execSync(command, {stdio: 'inherit'})
 }
 
-const write = (filePath: string, data: string) => {
+export const write = (filePath: string, data: string) => {
   writeFileSync(filePath, data, 'utf8')
 }
 
 // Main setup function
-const setup = (projectName: string) => {
+export const setup = (projectName: string) => {
   const projectPath = path.join(process.cwd(), projectName)
 
   if (!existsSync(projectPath)) {
