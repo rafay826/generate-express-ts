@@ -66,6 +66,9 @@ The script will create the following files and directories:
 - `tsconfig.json`: TypeScript configuration file
 - `.lintstagedrc`: Configuration for lint-staged
 - `package.json`: Node.js package manifest with scripts for common tasks
+- `src/`: Directory for source code
+- `src/api/`: Directory for API endpoints
+- `src/api/health/`: Health check endpoint, accessible at `/api/health`
 
 ## 🧸 Scripts
 

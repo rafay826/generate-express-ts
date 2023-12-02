@@ -22,6 +22,8 @@ export const setup = (projectName: string) => {
 
   shell.cd(projectPath)
   shell.mkdir('src')
+  shell.mkdir('src/api')
+  shell.mkdir('src/api/health')
   exec('git init')
   exec('yarn init -y')
   exec('yarn add express')
@@ -51,23 +53,58 @@ export const setup = (projectName: string) => {
   "include": ["./src/**/*"]
 }`)
 
-  write(path.join(projectPath, './src/app.ts'), `import express from "express";
+  write(path.join(projectPath, './src/app.ts'), `import express from 'express'
+import ApiRoutes from './api/api.routes'
 
-export const app = express();
-const port = 3000;
+export const app = express()
+const port = 3000
 
-app.use(express.json());
+app.use(express.json())
 
-app.get("/", (req, res) => {
-  res.send("Hello, world!");
-});
+app.use('/api', ApiRoutes)
+
+app.get('/', (req, res) => {
+  res.send('Hello, world! Refer to the generate-express-ts package readme to get started! https://npmjs.com/package/generate-express-ts')
+})
 
 if (process.env.NODE_ENV !== 'test') {
   app.listen(port, () => {
     console.log(\`Server is running at http://localhost:\${port}\`)
   })
 }
-  `)
+`)
+
+  write(path.join(projectPath, './src/api/api.routes.ts'), `import { Router } from 'express'
+import HealthController from './health/health.controller'
+
+const router = Router()
+
+router.get('/health', HealthController.getHealth)
+
+export default router
+  
+`)
+
+  write(path.join(projectPath, './src/api/health/health.controller.ts'), `import { Request, Response } from 'express'
+
+const getHealth = async (req: Request, res: Response) => {
+  res.json({ message: 'healthy' }).status(200).end()
+}
+
+export default {
+  getHealth
+}
+`)
+
+  write(path.join(projectPath, './src/api/health/health.routes.ts'), `import { Router } from 'express'
+import HealthController from './health.controller'
+
+const router = Router()
+
+router.get('/', HealthController.getHealth)
+
+export default router
+`)
 
   write(path.join(projectPath, '.eslintrc.yml'),
     `parser: '@typescript-eslint/parser'
@@ -109,10 +146,10 @@ import request from 'supertest';
 import { app } from './app';
 
 describe('GET /', () => {
-  it('responds with Hello, world!', async () => {
+  it('responds with appropriate message', async () => {
     const response = await request(app).get('/');
     expect(response.statusCode).toBe(200);
-    expect(response.text).toBe('Hello, world!');
+    expect(response.text).toBe('Hello, world! Refer to the generate-express-ts package readme to get started! https://npmjs.com/package/generate-express-ts');
   });
 });
   `)
