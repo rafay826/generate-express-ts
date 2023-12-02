@@ -72,6 +72,7 @@ The script will create the following files and directories:
 The generated `package.json` includes the following scripts:
 
 - `start`: Runs the Express server using `ts-node`
+- `dev`: Runs the Express server using `nodemon`
 - `build`: Compiles TypeScript files to JavaScript in the `dist` directory
 - `test`: Runs tests using Jest
 - `serve`: Runs the Express server using `node` (requires `build` to be run first)

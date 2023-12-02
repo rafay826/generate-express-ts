@@ -25,27 +25,33 @@ export const setup = (projectName: string) => {
   exec('git init')
   exec('yarn init -y')
   exec('yarn add express')
-  exec('yarn add --dev typescript ts-node @types/node @types/express')
+  exec('yarn add --dev typescript ts-node @types/node @types/express nodemon')
   exec('yarn add -D husky lint-staged eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin prettier jest')
   exec('yarn add -D ts-jest @types/jest supertest @types/supertest eslint-plugin-unused-imports@latest')
   exec('npx tsc --init')
 
-  write(path.join(projectPath, 'tsconfig.json'), `{
-    "compilerOptions": {
-      "target": "es6",
-      "module": "commonjs",
-      "rootDir": "./src",
-      "outDir": "./dist",
-      "esModuleInterop": true,
-      "strict": true,
-      "skipLibCheck": true
-    },
-    "exclude": ["node_modules"],
-    "include": ["./src/**/*"]
-  }`)
+  write(path.join(projectPath, 'nodemon.json'), `{
+  "ignore": ["**/*.test.ts", "**/*.spec.ts", "node_modules"],
+  "watch": ["src"],
+  "exec": "npm start",
+  "ext": "ts"
+}`)
 
-  write(path.join(projectPath, './src/app.ts'), `
-import express from "express";
+  write(path.join(projectPath, 'tsconfig.json'), `{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "esModuleInterop": true,
+    "strict": true,
+    "skipLibCheck": true
+  },
+  "exclude": ["node_modules"],
+  "include": ["./src/**/*"]
+}`)
+
+  write(path.join(projectPath, './src/app.ts'), `import express from "express";
 
 export const app = express();
 const port = 3000;
@@ -75,7 +81,8 @@ plugins:
 rules:
   'unused-imports/no-unused-imports': 'error'
   'no-use-before-define': 'off'
-  `)
+  'quotes': ['warn', 'single']
+ `)
 
   write(path.join(projectPath, '.gitignore'), `node_modules
 .idea
@@ -126,6 +133,7 @@ describe('GET /', () => {
   packageJson.scripts = {
     ...packageJson.scripts,
     'start': 'ts-node ./src/app.ts',
+    'dev': 'nodemon',
     'build': 'tsc',
     'serve': 'node dist/app.js',
     'test': 'NODE_ENV=test jest',
