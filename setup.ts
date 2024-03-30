@@ -154,8 +154,8 @@ describe('GET /', () => {
 });
   `)
 
-  exec('yarn husky install')
-  exec(`yarn husky add .husky/pre-commit "yarn lint-staged"`)
+  exec('npx husky init')
+  exec('echo "yarn lint-staged" > .husky/pre-commit')
 
   exec('npx ts-jest config:init')
 
